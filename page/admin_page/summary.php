@@ -259,7 +259,7 @@
                                             </select>
                                         </div>
                                         <div class="col-md-4">
-                                            <button type="submit" class="btn btn-primary w-100">ดูข้อมูล</button>
+                                            <button type="submit" class="btn btn-primary w-100">กรองข้อมูล</button>
                                         </div>
                                     </div>
                                 </form>
@@ -269,9 +269,9 @@
                                     $selected_year = $_GET['year'] ?? date('Y');
 
                                     $sql_month_orders = "SELECT COUNT(*) as month_order_count, SUM(od.price * od.amount) as total_sales
-                        FROM orders o
-                        JOIN orderdetail od ON o.order_id = od.order_id
-                        WHERE MONTH(o.order_date) = ? AND YEAR(o.order_date) = ? AND o.status = 'success'";
+                FROM orders o
+                JOIN orderdetail od ON o.order_id = od.order_id
+                WHERE MONTH(o.order_date) = ? AND YEAR(o.order_date) = ? AND o.status = 'success'";
                                     $stmt_month = $conn->prepare($sql_month_orders);
                                     $stmt_month->bind_param("ii", $selected_month, $selected_year);
                                     $stmt_month->execute();
@@ -285,12 +285,14 @@
                                     echo "<h6 class='mb-3'>ข้อมูลสำหรับ <span class='text-primary'>$monthName $selected_year</span></h6>";
                                     echo "<p>จำนวนคำสั่งซื้อที่สำเร็จ: <span class='badge bg-secondary fs-6'>" . number_format($order_count) . "</span> รายการ</p>";
                                     echo "<p>ยอดขายรวม: <span class='badge bg-success fs-6'>" . number_format($total_sales, 2) . "</span> บาท</p>";
-
                                     ?>
                                 </div>
+                                <div class="mt-3">
+                                    <a href="sales_report.php?month=<?php echo $selected_month; ?>&year=<?php echo $selected_year; ?>" class="btn btn-info w-100">ดูรายงานยอดขาย</a>
+                                </div>
+                                <p class='text-center'>(กรุณากดเลือกเดือนและกดกรองข้อมูลก่อนดูรายงานยอดขาย)</p>
                             </div>
                         </div>
-
                         <style>
                             .form-label {
                                 font-weight: bold;
@@ -343,6 +345,18 @@
                             .w-100 {
                                 width: 100% !important;
                             }
+
+                            .btn-info {
+                                color: #fff;
+                                background-color: #17a2b8;
+                                border-color: #17a2b8;
+                            }
+
+                            .btn-info:hover {
+                                color: #fff;
+                                background-color: #138496;
+                                border-color: #117a8b;
+                            }
                         </style>
                         <div class="card">
                             <div class="card-body">
@@ -362,7 +376,7 @@
                                             </select>
                                         </div>
                                         <div class="col-md-6">
-                                            <button type="submit" class="btn btn-primary w-100">ดูข้อมูล</button>
+                                            <button type="submit" class="btn btn-primary w-100">กรองข้อมูล</button>
                                         </div>
                                     </div>
                                 </form>
@@ -371,9 +385,9 @@
                                     $selected_year_year = $_GET['year'] ?? date('Y');
 
                                     $sql_year_orders = "SELECT COUNT(*) as year_order_count, SUM(od.price * od.amount) as total_sales
-                                FROM orders o
-                                JOIN orderdetail od ON o.order_id = od.order_id
-                                WHERE YEAR(o.order_date) = ? AND o.status = 'success'";
+                        FROM orders o
+                        JOIN orderdetail od ON o.order_id = od.order_id
+                        WHERE YEAR(o.order_date) = ? AND o.status = 'success'";
                                     $stmt_year = $conn->prepare($sql_year_orders);
                                     $stmt_year->bind_param("i", $selected_year_year);
                                     $stmt_year->execute();
@@ -389,6 +403,10 @@
                                     echo "<p>ยอดขายรวม: <span class='badge bg-success fs-6'>" . number_format($total_year_sales, 2) . "</span> บาท</p>";
                                     ?>
                                 </div>
+                                <div class="mt-3">
+                                    <a href="yearly_sales_report.php?year=<?php echo $selected_year_year; ?>" class="btn btn-info w-100">ดูรายงานยอดขาย</a>
+                                </div>
+                                <p class='text-center'>(กรุณากดเลือกปีและกดกรองข้อมูลก่อนดูรายงานยอดขาย)</p>
                             </div>
                         </div>
                     </div>

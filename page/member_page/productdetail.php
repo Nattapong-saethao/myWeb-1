@@ -23,13 +23,13 @@ session_start();
     include 'navbar.php';
     ?>
     <?php
-
+    $user_id = null;
     // ตรวจสอบว่า session มี user_id หรือไม่
     if (isset($_SESSION['user_id'])) {
         $user_id = $_SESSION['user_id']; // กำหนดค่า user_id จาก session
     } else {
         echo "Error: User not logged in"; // ถ้าไม่มี session ของ user_id
-        exit(); // หยุดการทำงาน
+
     }
 
     include '../php_script/db_connection.php'; // เชื่อมต่อฐานข้อมูล
