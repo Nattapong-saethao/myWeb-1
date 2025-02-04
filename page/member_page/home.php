@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +21,6 @@
     height: auto;
 ">
     <?php
-    session_start();
     // db_connection.php ควรมีแค่การสร้าง $conn เท่านั้น
     // การปิด connection ควรทำเมื่อจบ script
     include '../php_script/db_connection.php';
