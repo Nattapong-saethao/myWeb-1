@@ -3,14 +3,8 @@ FROM php:8.2-apache
 # Copy application
 COPY . /var/www/html/
 
-# Optionally install required php extension
-# RUN docker-php-ext-install pdo pdo_pgsql
-
-# Install mysqli and mysqlnd (recommended)
-RUN apt-get update && apt-get install -y --no-install-recommends php-mysql
-
-# Enable mysqli extension
-RUN docker-php-ext-enable mysqli
+# Install mysqli extension
+RUN docker-php-ext-install mysqli
 
 # Install Composer
 RUN apt-get update && apt-get install -y curl
