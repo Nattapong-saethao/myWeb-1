@@ -1,4 +1,12 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+echo "DB_HOST: " . $_ENV["DB_HOST"] . "<br>";
+echo "DB_USER: " . $_ENV["DB_USER"] . "<br>";
+echo "DB_PASSWORD: " . $_ENV["DB_PASSWORD"] . "<br>";
+echo "DB_NAME: " . $_ENV["DB_NAME"] . "<br>";
+
 $servername = $_ENV["DB_HOST"];
 $username = $_ENV["DB_USER"];
 $password = $_ENV["DB_PASSWORD"];
