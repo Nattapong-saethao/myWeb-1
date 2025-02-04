@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php
-session_start();
-?>
+
 
 <head>
     <meta charset="UTF-8">
@@ -13,6 +11,9 @@ session_start();
 </head>
 
 <body>
+    <?php
+    session_start();
+    ?>
     <div class="login-container">
         <div class="welcome-section text-center">
             <h2>Welcome to Coffee De Hmong</h2>
