@@ -1,5 +1,8 @@
 <?php
 session_start();
+// db_connection.php ควรมีแค่การสร้าง $conn เท่านั้น
+// การปิด connection ควรทำเมื่อจบ script
+include '../php_script/db_connection.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,9 +24,6 @@ session_start();
     height: auto;
 ">
     <?php
-    // db_connection.php ควรมีแค่การสร้าง $conn เท่านั้น
-    // การปิด connection ควรทำเมื่อจบ script
-    include '../php_script/db_connection.php';
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
