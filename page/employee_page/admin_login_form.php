@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,9 +10,7 @@
 </head>
 
 <body>
-    <?php
-    session_start();
-    ?>
+    <?php session_start(); ?>
     <div class="login-container">
         <div class="welcome-section text-center">
             <h2>Welcome to Coffee De Hmong</h2>

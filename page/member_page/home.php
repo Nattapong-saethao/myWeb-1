@@ -1,14 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php
-session_start();
-// db_connection.php ควรมีแค่การสร้าง $conn เท่านั้น
-// การปิด connection ควรทำเมื่อจบ script
-include '../php_script/db_connection.php';
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-?>
 
 <head>
     <meta charset="UTF-8">
@@ -26,11 +17,19 @@ if ($conn->connect_error) {
     flex-direction: column;
     height: auto;
 ">
+    <?php
+    session_start();
+    // db_connection.php ควรมีแค่การสร้าง $conn เท่านั้น
+    // การปิด connection ควรทำเมื่อจบ script
+    include '../php_script/db_connection.php';
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    ?>
     <!-- Navbar -->
     <?php
     include 'navbar.php';
     ?>
-
     <div class="container-fluid">
         <!-- Hero Section -->
         <div class="hero-section">
