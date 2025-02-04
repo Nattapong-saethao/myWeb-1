@@ -9,17 +9,11 @@ COPY . /var/www/html/
 RUN apt-get update && apt-get install -y curl
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+# Copy Apache config
+COPY apache.conf /etc/apache2/sites-available/000-default.conf
+
+# Enable site
+RUN a2ensite 000-default.conf
+
 # Set document root for apache
-<VirtualHost *:80>
-DocumentRoot /var/www/html/page/
-<Directory /var/www/html/page>
-Options Indexes FollowSymLinks MultiViews
-AllowOverride All
-Require all granted
-</Directory>
-ErrorLog ${APACHE_LOG_DIR}/error.log
-CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-
-
 WORKDIR /var/www/html
